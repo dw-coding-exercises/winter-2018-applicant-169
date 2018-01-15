@@ -1,4 +1,4 @@
 (ns my-exercise.search)
 
 (defn submit [request]
-  request )
+  (html5 request ) )
