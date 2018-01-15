@@ -11,7 +11,11 @@
 
 
 (defn format-val [prepend getter address]
-  (str prepend (st/lower-case (get address getter))) )
+  (-> address
+      (get getter)
+      (st/lower-case)
+      (st/replace #" " "_")
+      (#(str prepend %))))
 
 (def get-state
   (partial format-val "state:" "state"))
