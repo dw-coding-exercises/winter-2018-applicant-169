@@ -23,10 +23,13 @@
 (def get-place
   (partial format-val "place:" "city"))
 
+(defn ocd-modifiers [address]
+  [""
+   (get-state address)
+   (get-place address)])
+
 (defn ocd-ids [address]
-  [ocd-base
-   (st/join "/" [ocd-base (get-state address)])
-   (st/join "/" [ocd-base (get-place address)])])
+  (vec (map #(st/join "/" [ocd-base %]) (ocd-modifiers address))))
 
 
 
